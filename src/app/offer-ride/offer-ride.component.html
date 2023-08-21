@@ -1,0 +1,71 @@
+<nav class="navbar navbar-expand-lg bg-body-tertiary">
+    <div class="container-fluid">
+      <b><a style="color: palevioletred;" class="navbar-brand" routerLink="/offer-ride">PoolCarz</a></b>
+
+        <form class="d-flex" role="search">
+           <b><a style="color: palevioletred; " class="navbar-brand" routerLink="/" (click)="showAlert()">Log Out</a></b> 
+        </form>
+      </div>
+  </nav>
+
+  <div class="container mt-5">
+    <div class="row">
+      <div class="col-md-6 offset-md-3">
+        <div class="card border-primary">
+          <div class="card-header bg-primary text-white">
+            Car Ride Registration Form
+          </div>
+          <div class="card-body">
+            <form [formGroup]="rideForm" (ngSubmit)="onSubmit()">
+              <div class="form-group">
+                <label for="name">Name:</label>
+                <input type="text" class="form-control" formControlName="name" id="name" placeholder="Enter name" required>
+                <div class="form-group text-danger" *ngIf="rideForm.get('name').invalid">
+                  *Required Enter Name 
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="startLocation">Start Location:</label>
+                <input type="text" class="form-control" formControlName="startLocation" id="startLocation" placeholder="Enter start location" required>
+                <div class="form-group text-danger" *ngIf="rideForm.get('startLocation').invalid">
+                  *Required Enter Location
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="destination">Destination:</label>
+                <input type="text" class="form-control" formControlName="destination" id="destination" placeholder="Enter Destination" required>
+                <div class="form-group text-danger" *ngIf="rideForm.get('destination').invalid">
+                  *Required Enter Destination
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="car">Car:</label>
+                <input type="text" class="form-control" formControlName="car" id="car" placeholder="Enter car name" required>
+                <div class="form-group text-danger" *ngIf="rideForm.get('car').invalid">
+                  *Required Enter Car Name
+                </div>
+              </div>
+              <div class="form-group">
+                <label for="seatsAvailable">Car Seats Available:</label>
+                <input type="number" class="form-control" id="seatsAvailable" formControlName="seatsAvailable" [class.invalid]="rideForm.get('seatsAvailable').hasError('seatsAvailable')" placeholder="Enter number of seats 0-8">
+                <div class="form-group text-danger" *ngIf="rideForm.get('seatsAvailable').hasError('seatsAvailable')">
+                  Invalid number of seats available. Please enter a value between 0 and 8.
+                </div>
+              </div>
+              <br>
+              <div class="container">
+                <div class="row">
+                  <div class="col">
+                    <button type="submit" [disabled]="rideForm.invalid" class="btn btn-primary">Submit</button>
+                  </div>
+                  <div class="col">
+                    <button class="btn btn-primary" [disabled]="true" >Go Back</button>
+                  </div>
+                </div>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
